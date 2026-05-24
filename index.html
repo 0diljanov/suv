@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>AquaFlow — Вход в систему</title>
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="color-scheme" content="dark">
+
+<!-- iOS Safari: добавление на главный экран как приложение -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AquaFlow">
+<link rel="apple-touch-icon" href="./assets/icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/icon-180.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="64x64" href="./assets/icons/favicon-64.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<div class="auth-page">
+  <!-- LEFT: hero / brand -->
+  <section class="auth-cover">
+    <div class="cover-brand">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c-3.5 4-6 7.5-6 11a6 6 0 0 0 12 0c0-3.5-2.5-7-6-11Z"/></svg>
+      </div>
+      <div>
+        <div class="brand-name" data-i18n="brand">AquaFlow</div>
+        <div class="brand-sub" data-i18n="brand_sub">IoT-платформа водоматов</div>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <h1 data-i18n="app_title">AquaFlow — управление сетью водоматов</h1>
+      <p data-i18n="login_sub">Контроль выручки, состояния узлов и мгновенные уведомления о любых неполадках — от затора в купюроприёмнике до перебоев фильтра.</p>
+
+      <div class="cover-features">
+        <div class="cover-feat">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4 data-i18n="feat_realtime"></h4>
+          <p data-i18n="feat_realtime_d"></p>
+        </div>
+        <div class="cover-feat">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4 data-i18n="feat_geo"></h4>
+          <p data-i18n="feat_geo_d"></p>
+        </div>
+        <div class="cover-feat">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          </div>
+          <h4 data-i18n="feat_alerts"></h4>
+          <p data-i18n="feat_alerts_d"></p>
+        </div>
+        <div class="cover-feat">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
+          </div>
+          <h4 data-i18n="feat_finance"></h4>
+          <p data-i18n="feat_finance_d"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>© 2026 AquaFlow IoT</span>
+      <span>v 2.0.0</span>
+    </div>
+  </section>
+
+  <!-- RIGHT: form -->
+  <section class="auth-form-wrap">
+    <div class="auth-form">
+      <div class="auth-top">
+        <div class="lang-toggle">
+          <button id="lang-ru" onclick="switchLang('ru')">RU</button>
+          <button id="lang-uz" onclick="switchLang('uz')">UZ</button>
+        </div>
+      </div>
+
+      <h2 data-i18n="login_h">Добро пожаловать</h2>
+      <div class="sub" data-i18n="login_sub"></div>
+
+      <form id="loginForm" autocomplete="off" onsubmit="return doLogin(event)">
+        <div class="form-row">
+          <label data-i18n="phone_label"></label>
+          <div class="input-with-ico">
+            <span class="ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.1 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72a2 2 0 0 1 1.71 2.03Z"/></svg>
+            </span>
+            <input class="input" type="text" id="phoneInput" data-i18n-ph="phone_ph" placeholder="+998 90 123 45 67" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label data-i18n="password_label"></label>
+          <div class="input-with-ico">
+            <span class="ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input class="input" type="password" id="passwordInput" data-i18n-ph="password_ph" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label data-i18n="role_label"></label>
+          <div class="role-grid" id="roleGrid">
+            <div class="role-card active" data-role="manager">
+              <div class="role-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <h5 data-i18n="role_manager"></h5>
+              <p data-i18n="role_manager_d"></p>
+            </div>
+            <div class="role-card" data-role="admin">
+              <div class="role-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/></svg>
+              </div>
+              <h5 data-i18n="role_admin"></h5>
+              <p data-i18n="role_admin_d"></p>
+            </div>
+            <div class="role-card" data-role="tech">
+              <div class="role-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+              </div>
+              <h5 data-i18n="role_tech"></h5>
+              <p data-i18n="role_tech_d"></p>
+            </div>
+            <div class="role-card" data-role="owner">
+              <div class="role-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+              </div>
+              <h5 data-i18n="role_owner"></h5>
+              <p data-i18n="role_owner_d"></p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit" data-i18n="sign_in">Войти</button>
+
+        <div class="auth-hint">
+          <b data-i18n="demo_hint"></b> <span data-i18n="demo_hint_body"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<script src="./assets/js/i18n.js"></script>
+<script>
+  // Set initial lang button
+  function syncLangButtons() {
+    const lang = getLang();
+    document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
+    document.getElementById('lang-uz').classList.toggle('active', lang === 'uz');
+  }
+  function switchLang(l) { setLang(l); applyI18n(); syncLangButtons(); }
+  // Role selection
+  document.querySelectorAll('.role-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+  });
+  function doLogin(e) {
+    e.preventDefault();
+    const role = document.querySelector('.role-card.active').dataset.role;
+    const phone = document.getElementById('phoneInput').value || '+998 90 000 00 00';
+    localStorage.setItem('aquaflow.role', role);
+    localStorage.setItem('aquaflow.phone', phone);
+    localStorage.setItem('aquaflow.session', String(Date.now()));
+    location.href = './app.html';
+    return false;
+  }
+  applyI18n();
+  syncLangButtons();
+
+  // Service Worker (PWA)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+    });
+  }
+
+  // iOS Safari: показать подсказку "Добавить на главный экран"
+  (function () {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.navigator.standalone === true ||
+                         window.matchMedia('(display-mode: standalone)').matches;
+    if (!isIOS || isStandalone) return;
+    if (localStorage.getItem('aquaflow.iosBannerDismissed')) return;
+
+    const lang = getLang();
+    const txt = lang === 'uz'
+      ? { t: 'AquaFlow ni iPhone’ga o‘rnatish', b: 'Pastdagi <b>Ulashish</b> tugmasini bosing, so‘ng <b>"Bosh ekranga qo‘shish"</b> ni tanlang — ilova bosh ekranda paydo bo‘ladi.', x: 'Yopish' }
+      : { t: 'Установите AquaFlow как приложение', b: 'Нажмите <b>Поделиться</b> внизу Safari → <b>«На экран “Домой”»</b> — иконка появится на рабочем экране как у обычного приложения.', x: 'Закрыть' };
+
+    const div = document.createElement('div');
+    div.id = 'ios-install-banner';
+    div.innerHTML = `
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <img src="./assets/icons/icon-192.png" alt="" width="44" height="44" style="border-radius:10px;flex-shrink:0">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:13px;margin-bottom:2px">${txt.t}</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.4">${txt.b}</div>
+        </div>
+        <button id="ios-banner-x" style="background:none;border:none;color:var(--text-mute);font-size:20px;line-height:1;cursor:pointer;padding:4px" aria-label="${txt.x}">×</button>
+      </div>`;
+    Object.assign(div.style, {
+      position: 'fixed', left: '12px', right: '12px',
+      bottom: 'calc(env(safe-area-inset-bottom) + 12px)',
+      background: 'var(--surface)', border: '1px solid var(--border-strong)',
+      borderRadius: '14px', padding: '12px',
+      boxShadow: '0 12px 40px rgba(0,0,0,.5)', zIndex: '999'
+    });
+    document.body.appendChild(div);
+    document.getElementById('ios-banner-x').onclick = () => {
+      localStorage.setItem('aquaflow.iosBannerDismissed', '1');
+      div.remove();
+    };
+  })();
+</script>
+</body>
+</html>
